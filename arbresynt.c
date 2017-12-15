@@ -135,9 +135,13 @@ double Evaluation(TArbreSynt pA, double pX){
 
 char *ArbreEnChaine(TArbreSynt pA){
 	//
+	char *chaine;
+	char *fg;
+	char *fd;
+	char bin[2];
 	switch (Nature(pA)){
 	case Constante:
-		char chaine[100];
+		chaine = malloc(100 * sizeof(char));
 		snprintf(chaine, 100, "%lf", GetConstante(pA));
 		return (char*)chaine;
 		break;
@@ -145,9 +149,8 @@ char *ArbreEnChaine(TArbreSynt pA){
 		return (char*)"x";
 		break;
 	case Binaire:
-		char *fg = ArbreEnChaine(FG(pA));
-		char *fd = ArbreEnChaine(FD(pA));
-		char bin[2];
+		fg = (char*)ArbreEnChaine(FG(pA));
+		fd = (char*)ArbreEnChaine(FD(pA));
 		bin[0] = GetOperOuFonction(pA);
 		bin[1] = '\0';
 
